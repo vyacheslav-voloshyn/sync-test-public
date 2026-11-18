@@ -9,7 +9,7 @@ import (
 
 // Capabilities lists what a node reports to the node above it. A private
 // build may append to it from its own package's init.
-var Capabilities = []string{"jobs", "files"}
+var Capabilities = []string{"jobs", "files", "tool-count"}
 
 func init() {
 	core.Register(core.Feature{Name: "fractal", Describe: func() string {
