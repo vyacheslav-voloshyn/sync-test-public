@@ -1,0 +1,22 @@
+name: mirror
+# Runs only in the private repository: it alone has the PUBLIC_REPO variable.
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [public-main-moved]
+permissions:
+  contents: write
+concurrency:
+  group: mirror
+jobs:
+  mirror:
+    if: vars.PUBLIC_REPO != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: git remote add public "https://github.com/${{ vars.PUBLIC_REPO }}.git"
+      - run: scripts/mirror.sh
+        env:
+          PRIVATE_REMOTE: origin
