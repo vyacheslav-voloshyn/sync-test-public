@@ -1,5 +1,5 @@
 alpha (renamed in review)
-bravo
+bravo (public)
 charlie
 delta
 echo
